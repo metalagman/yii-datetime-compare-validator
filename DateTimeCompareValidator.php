@@ -70,6 +70,7 @@ class DateTimeCompareValidator extends CValidator
 
         if (!$valueDT instanceof DateTime) {
             $this->addError($object, $attribute, Yii::t('yii', 'Invalid value date format: {value}'), array('{value}' => $value));
+            return;
         }
 
         if (!$compareValueDT instanceof DateTime) {
@@ -77,10 +78,8 @@ class DateTimeCompareValidator extends CValidator
                 isset($compareAttribute) ? $attribute : $compareAttribute,
                 Yii::t('yii', 'Invalid compare value date format: {value}'), array('{value}' => $compareValue)
             );
-        }
-
-        if ($object->hasErrors())
             return;
+        }
 
         switch ($this->operator) {
             case '=':
